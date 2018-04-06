@@ -3,7 +3,9 @@ package com.riefzin.android.learnkotlin02
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import com.riefzin.android.learnkotlin02.R.array.club_image
+import com.riefzin.android.learnkotlin02.R.array.club_name
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,16 +14,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val list = findViewById<RecyclerView>(R.id.club_list)
         initData()
 
-        list.layoutManager = LinearLayoutManager(this)
-        list.adapter = RecyclerViewAdapter(this, items)
+        club_list.layoutManager = LinearLayoutManager(this)
+        club_list.adapter = RecyclerViewAdapter(this, items)
     }
 
     private fun initData(){
-        val name = resources.getStringArray(R.array.club_name)
-        val image = resources.obtainTypedArray(R.array.club_image)
+        val name = resources.getStringArray(club_name)
+        val image = resources.obtainTypedArray(club_image)
         items.clear()
         for (i in name.indices) {
             items.add(Item(name[i],
